@@ -1,0 +1,92 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Download model
+        run: |
+          sudo apt install wget
+          wget https://nvidia.box.com/shared/static/5j264j7mky11q8emy4q14w3r8hl5v6zh.caffemodel -O 5j264j7mky11q8emy4q14w3r8hl5v6zh.caffemodel
+          wget https://nvidia.box.com/shared/static/c84wp3axbtv4e2gybn40jprdquav9azm.prototxt -O c84wp3axbtv4e2gybn40jprdquav9azm.prototxt
+          wget https://nvidia.box.com/shared/static/o0w0sl3obqxj21u09c0cwzw4khymz7hh.prototxt -O o0w0sl3obqxj21u09c0cwzw4khymz7hh.prototxt
+          wget https://nvidia.box.com/shared/static/at8b1105ww1c5h7p30j5ko8qfnxrs0eg.caffemodel -O at8b1105ww1c5h7p30j5ko8qfnxrs0eg.caffemodel
+          wget https://nvidia.box.com/shared/static/5z3l76p8ap4n0o6rk7lyasdog9f14gc7.prototxt -O 5z3l76p8ap4n0o6rk7lyasdog9f14gc7.prototxt
+          wget https://nvidia.box.com/shared/static/ue8qrqtglu36andbvobvaaj8egxjaoli.prototxt -O ue8qrqtglu36andbvobvaaj8egxjaoli.prototxt
+          wget https://nvidia.box.com/shared/static/zb8i3zcg39sdjjxfty7o5935hpbd64y4.gz -O zb8i3zcg39sdjjxfty7o5935hpbd64y4.gz
+          wget https://nvidia.box.com/shared/static/gph1qfor89vh498op8cicvwc13zltu3h.gz -O gph1qfor89vh498op8cicvwc13zltu3h.gz
+          wget https://nvidia.box.com/shared/static/ht46fmnwvow0o0n0ke92x6bzkht8g5xb.gz -O ht46fmnwvow0o0n0ke92x6bzkht8g5xb.gz
+          wget https://nvidia.box.com/shared/static/7zog25pu70nxjh2irni49e5ujlg4dl82.gz -O 7zog25pu70nxjh2irni49e5ujlg4dl82.gz
+          wget https://nvidia.box.com/shared/static/6t621ru1i054vscvhx3rqck8597es7w8.gz -O 6t621ru1i054vscvhx3rqck8597es7w8.gz
+          wget https://nvidia.box.com/shared/static/ar2ttdpnw1drzxnvpw0umzkw67fka3h0.gz -O ar2ttdpnw1drzxnvpw0umzkw67fka3h0.gz
+          wget https://nvidia.box.com/shared/static/1ubk73f1akhh4h7mo0iq7erars7j5yyu.gz -O 1ubk73f1akhh4h7mo0iq7erars7j5yyu.gz
+          wget https://nvidia.box.com/shared/static/maidbjiwkg6bz2bk7drwq7rj8v4whdl9.gz -O maidbjiwkg6bz2bk7drwq7rj8v4whdl9.gz
+          wget https://nvidia.box.com/shared/static/0wbxo6lmxfamm1dk90l8uewmmbpbcffb.gz -O 0wbxo6lmxfamm1dk90l8uewmmbpbcffb.gz
+          wget https://nvidia.box.com/shared/static/r3bq08qh7zb0ap2lf4ysjujdx64j8ofw.gz -O r3bq08qh7zb0ap2lf4ysjujdx64j8ofw.gz
+          wget https://nvidia.box.com/shared/static/wjitc00ef8j6shjilffibm6r2xxcpigz.gz -O wjitc00ef8j6shjilffibm6r2xxcpigz.gz
+          wget https://nvidia.box.com/shared/static/3qdg3z5qvl8iwjlds6bw7bwi2laloytu.gz -O 3qdg3z5qvl8iwjlds6bw7bwi2laloytu.gz
+          wget https://nvidia.box.com/shared/static/fq0m0en5mmssiizhs9nxw3xtwgnoltf2.gz -O fq0m0en5mmssiizhs9nxw3xtwgnoltf2.gz
+          wget https://nvidia.box.com/shared/static/8bhm91o9yldpf97dcz5d0welgmjy7ucw.gz -O 8bhm91o9yldpf97dcz5d0welgmjy7ucw.gz
+          wget https://nvidia.box.com/shared/static/xi71hlsht5b0y66loeg73rxfa73q561s.gz -O xi71hlsht5b0y66loeg73rxfa73q561s.gz
+          wget https://nvidia.box.com/shared/static/0pg3xi9opwio65df14rdgrtw40ivbk1o.gz -O 0pg3xi9opwio65df14rdgrtw40ivbk1o.gz
+          wget https://nvidia.box.com/shared/static/jcdewxep8vamzm71zajcovza938lygre.gz -O jcdewxep8vamzm71zajcovza938lygre.gz
+          wget https://nvidia.box.com/shared/static/mjq1cel6r5mdk94yb9o6v4nj8gxzlflr.gz -O mjq1cel6r5mdk94yb9o6v4nj8gxzlflr.gz
+          wget https://nvidia.box.com/shared/static/frgbiqeieaja0o8b0eyb87fjbsqd4zup.gz -O frgbiqeieaja0o8b0eyb87fjbsqd4zup.gz
+          wget https://nvidia.box.com/shared/static/ai2sxrp1tg8mk4j0jbrw3vthqjp8x0af.gz -O ai2sxrp1tg8mk4j0jbrw3vthqjp8x0af.gz
+          wget https://nvidia.box.com/shared/static/3umpq9yrv3nj3ltiwlooijx5of414gbh.gz -O 3umpq9yrv3nj3ltiwlooijx5of414gbh.gz
+          wget https://nvidia.box.com/shared/static/waf8bsu58v9qh9qj3sp3wsw1nyj61xm5.gz -O waf8bsu58v9qh9qj3sp3wsw1nyj61xm5.gz
+          wget https://nvidia.box.com/shared/static/srfcadyqv4eaeq6lvu5qpsm6l5oatcnq.gz -O srfcadyqv4eaeq6lvu5qpsm6l5oatcnq.gz
+          wget https://nvidia.box.com/shared/static/sizfwdkjmvzlo96serrs7u175wxldrv5.gz -O sizfwdkjmvzlo96serrs7u175wxldrv5.gz
+          wget https://nvidia.box.com/shared/static/k7s7gdgi098309fndm2xbssj553vf71s.gz -O k7s7gdgi098309fndm2xbssj553vf71s.gz
+          wget https://nvidia.box.com/shared/static/9aqg4gpjmk7ipz4z0raa5mvs35om6emy.gz -O 9aqg4gpjmk7ipz4z0raa5mvs35om6emy.gz
+          wget https://nvidia.box.com/shared/static/ylh3d2qk8qvitalq8sy803o7avrb6w0h.gz -O ylh3d2qk8qvitalq8sy803o7avrb6w0h.gz
+          wget https://nvidia.box.com/shared/static/jm0zlezvweiimpzluohg6453s0u0nvcv.gz -O jm0zlezvweiimpzluohg6453s0u0nvcv.gz
+          wget https://nvidia.box.com/shared/static/gooux9b5nknk8wlk60ou9s2unpo760iq.gz -O gooux9b5nknk8wlk60ou9s2unpo760iq.gz
+          wget https://nvidia.box.com/shared/static/dgaw0ave3bdws1t5ed333ftx5dbpt9zv.gz -O dgaw0ave3bdws1t5ed333ftx5dbpt9zv.gz
+          wget https://nvidia.box.com/shared/static/50mvlrjwbq9ugkmnnqp1sm99g2j21sfn.gz -O 50mvlrjwbq9ugkmnnqp1sm99g2j21sfn.gz
+          wget https://nvidia.box.com/shared/static/p63pgrr6tm33tn23913gq6qvaiarydaj.gz -O p63pgrr6tm33tn23913gq6qvaiarydaj.gz
+          wget https://nvidia.box.com/shared/static/njup7f3vu4mgju89kfre98olwljws5pk.gz -O njup7f3vu4mgju89kfre98olwljws5pk.gz
+          wget https://nvidia.box.com/shared/static/5vs9t2wah5axav11k8o3l9skb7yy3xgd.gz -O 5vs9t2wah5axav11k8o3l9skb7yy3xgd.gz
+          wget https://nvidia.box.com/shared/static/z5llxysbcqd8zzzsm7vjqeihs7ihdw20.gz -O z5llxysbcqd8zzzsm7vjqeihs7ihdw20.gz
+          wget https://nvidia.box.com/shared/static/pa5d338t9ntca5chfbymnur53aykhall.gz -O pa5d338t9ntca5chfbymnur53aykhall.gz
+          wget https://nvidia.box.com/shared/static/mh121fvmveemujut7d8c9cbmglq18vz3.gz -O mh121fvmveemujut7d8c9cbmglq18vz3.gz
+          wget https://nvidia.box.com/shared/static/y1mzlwkmytzwg2m7akt7tcbsd33f9opz.gz -O y1mzlwkmytzwg2m7akt7tcbsd33f9opz.gz
+          wget https://nvidia.box.com/shared/static/xj20b6qopfwkkpqm12ffiuaekk6bs8op.gz -O xj20b6qopfwkkpqm12ffiuaekk6bs8op.gz
+          wget https://nvidia.box.com/shared/static/u5ey2ws0nbtzyqyftkuqazx1honw6wry.gz -O u5ey2ws0nbtzyqyftkuqazx1honw6wry.gz
+          wget https://nvidia.box.com/shared/static/vbk5ofu1x2hwp9luanbg4o0vrfub3a7j.gz -O vbk5ofu1x2hwp9luanbg4o0vrfub3a7j.gz
+          wget https://nvidia.box.com/shared/static/ydgmqgdhbvul6q9avoc9flxr3fdoa8pw.gz -O ydgmqgdhbvul6q9avoc9flxr3fdoa8pw.gz
+          wget https://nvidia.box.com/shared/static/nlqbsdnt76y0nmkwdzxkg4zbvhk4bidh.gz -O nlqbsdnt76y0nmkwdzxkg4zbvhk4bidh.gz
+          wget https://nvidia.box.com/shared/static/a99l8ttk21p3tubjbyhfn4gh37o45rn8.gz -O a99l8ttk21p3tubjbyhfn4gh37o45rn8.gz
+          wget https://nvidia.box.com/shared/static/o8teczquxgul2vjukwd4p77c6869xmri.whl -O o8teczquxgul2vjukwd4p77c6869xmri.whl
+          wget https://nvidia.box.com/shared/static/j2dn48btaxosqp0zremqqm8pjelriyvs.whl -O j2dn48btaxosqp0zremqqm8pjelriyvs.whl
+          wget https://nvidia.box.com/shared/static/1v2cc4ro6zvsbu0p8h6qcuaqco1qcsif.whl -O 1v2cc4ro6zvsbu0p8h6qcuaqco1qcsif.whl
+          wget https://nvidia.box.com/shared/static/ncgzus5o23uck9i5oth2n8n06k340l6k.whl -O ncgzus5o23uck9i5oth2n8n06k340l6k.whl
+          wget https://nvidia.box.com/shared/static/yhlmaie35hu8jv2xzvtxsh0rrpcu97yj.whl -O yhlmaie35hu8jv2xzvtxsh0rrpcu97yj.whl
+          wget https://nvidia.box.com/shared/static/c3d7vm4gcs9m728j6o5vjay2jdedqb55.whl -O c3d7vm4gcs9m728j6o5vjay2jdedqb55.whl
+          wget https://nvidia.box.com/shared/static/9eptse6jyly1ggt9axbja2yrmj6pbarc.whl -O 9eptse6jyly1ggt9axbja2yrmj6pbarc.whl
+
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ github.token }}
+          file: ./*
+          tag: v2.0
+          file_glob: true
